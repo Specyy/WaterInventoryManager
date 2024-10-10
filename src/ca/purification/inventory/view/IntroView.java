@@ -24,12 +24,15 @@ import java.util.Optional;
 public class IntroView extends View {
     private final LazyDependency<MenuView> menuView;
     
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
+    private final TextElementPresenter elementPresenter;
     private final ParagraphElement greetingText;
 
-    public IntroView(final String appName, LazyDependency<MenuView> menuView) {
+    public IntroView(final String appName, 
+                     TextElementPresenter presenter, 
+                     LazyDependency<MenuView> menuView) {
+        this.elementPresenter= presenter;
         this.menuView = menuView;
-
+        
         this.greetingText = new ParagraphElement(appName + "\nby Alvyn Kang.");
         this.greetingText.getStyle().getBorder().setVertical(1);
     }

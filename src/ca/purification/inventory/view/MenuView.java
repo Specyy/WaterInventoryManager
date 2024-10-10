@@ -9,14 +9,14 @@ import ca.purification.inventory.util.LazyDependency;
 import java.util.Optional;
 
 /**
- * The {@code MenuView} class presents a main menu interface to the user, 
- * allowing them to navigate various functionalities of the application. 
- * Users can choose from options such as reading a JSON input file, displaying 
- * information on a unit, creating a new unit, testing a unit, shipping a unit, 
+ * The {@code MenuView} class presents a main menu interface to the user,
+ * allowing them to navigate various functionalities of the application.
+ * Users can choose from options such as reading a JSON input file, displaying
+ * information on a unit, creating a new unit, testing a unit, shipping a unit,
  * printing reports, setting the report sort order, and exiting the application.
  *
- * <p>This class utilizes a {@code SelectionElement} to manage the menu options 
- * and interacts with the corresponding view classes through {@code LazyDependency}. 
+ * <p>This class utilizes a {@code SelectionElement} to manage the menu options
+ * and interacts with the corresponding view classes through {@code LazyDependency}.
  * The selected option resolves to the appropriate view for execution.</p>
  *
  * @see ReadFileView
@@ -31,17 +31,18 @@ import java.util.Optional;
  * @see ParagraphElement
  */
 public class MenuView extends View {
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
-
+    private final TextElementPresenter elementPresenter;
     private final SelectionElement<LazyDependency<View>> selectionMenu;
 
-    public MenuView(LazyDependency<ReadFileView> readFileView,
+    public MenuView(TextElementPresenter presenter,
+                    LazyDependency<ReadFileView> readFileView,
                     LazyDependency<CreateUnitView> createUnitView,
                     LazyDependency<DisplayUnitView> displayUnitView,
                     LazyDependency<TestUnitView> testUnitView,
                     LazyDependency<ShipUnitView> shipUnitView,
                     LazyDependency<PrintReportView> printReportView,
                     LazyDependency<ReorderReportsView> reorderReportsView) {
+        this.elementPresenter = presenter;
         selectionMenu = new SelectionElement<>();
 
         selectionMenu.addOption("Read JSON input file.", readFileView.cast())

@@ -39,13 +39,16 @@ public class DisplayUnitView extends View {
     private final DisplayUnitViewModel viewModel;
     private final LazyDependency<MenuView> mainMenu;
 
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
+    private final TextElementPresenter elementPresenter;
     private final SerialNumberPrompt serialNumberPrompt;
     private final ParagraphElement noTestsText = new ParagraphElement("No tests found.");
 
-    public DisplayUnitView(DisplayUnitViewModel viewModel, LazyDependency<MenuView> menuView) {
+    public DisplayUnitView(DisplayUnitViewModel viewModel, 
+                           TextElementPresenter presenter,
+                           LazyDependency<MenuView> menuView) {
         super(viewModel);
         this.viewModel = viewModel;
+        this.elementPresenter = presenter;
         this.mainMenu = menuView;
         
         this.serialNumberPrompt = new SerialNumberPrompt(viewModel.getUnitManager());

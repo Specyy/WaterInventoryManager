@@ -35,7 +35,7 @@ public class CreateUnitView extends View {
     private final CreateUnitViewModel viewModel;
     private final LazyDependency<MenuView> mainMenu;
 
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
+    private final TextElementPresenter elementPresenter;
 
     private final ParagraphElement instructionsText =
             new ParagraphElement("Enter product info; blank line to quit.");
@@ -44,9 +44,12 @@ public class CreateUnitView extends View {
     private final PromptElement<Optional<SerialNumber>> serialNumberPrompt =
             new PromptElement<>("Serial number: ", this::getSerialNumber);
 
-    public CreateUnitView(CreateUnitViewModel viewModel, LazyDependency<MenuView> menuView) {
+    public CreateUnitView(CreateUnitViewModel viewModel,
+                          TextElementPresenter presenter, 
+                          LazyDependency<MenuView> menuView) {
         super(viewModel);
         this.viewModel = viewModel;
+        this.elementPresenter = presenter;
         this.mainMenu = menuView;
     }
 

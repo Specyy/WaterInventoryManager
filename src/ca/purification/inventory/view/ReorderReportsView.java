@@ -26,13 +26,16 @@ public class ReorderReportsView extends View {
     private final ReorderReportsViewModel viewModel;
     private final LazyDependency<MenuView> mainMenu;
 
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
+    private final TextElementPresenter elementPresenter;
 
     private final SelectionElement<UnitSortOrder> sortOrderSelection;
 
-    public ReorderReportsView(ReorderReportsViewModel viewModel, LazyDependency<MenuView> menuView) {
+    public ReorderReportsView(ReorderReportsViewModel viewModel, 
+                              TextElementPresenter presenter,
+                              LazyDependency<MenuView> menuView) {
         super(viewModel);
         this.viewModel = viewModel;
+        this.elementPresenter = presenter;
         this.mainMenu = menuView;
 
         sortOrderSelection = new SelectionElement<>();

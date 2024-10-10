@@ -26,7 +26,7 @@ public class TestUnitView extends View {
     private final TestUnitViewModel viewModel;
     private final LazyDependency<MenuView> mainMenu;
 
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
+    private final TextElementPresenter elementPresenter;
 
     private final SerialNumberPrompt serialNumberPrompt;
     private final PromptElement<Boolean> testPassedPrompt = new PromptElement<>("Pass? (Y/n): ",
@@ -45,10 +45,14 @@ public class TestUnitView extends View {
     private final PromptElement<String> testCommentPrompt = new PromptElement<>("Comment: ", Optional::of);
     private final ParagraphElement confirmationText = new ParagraphElement("Test recorded.");
 
-    public TestUnitView(TestUnitViewModel viewModel, LazyDependency<MenuView> menuView) {
+    public TestUnitView(TestUnitViewModel viewModel, 
+                        TextElementPresenter presenter, 
+                        LazyDependency<MenuView> menuView) {
         super(viewModel);
         this.viewModel = viewModel;
+        this.elementPresenter = presenter;
         this.mainMenu = menuView;
+        
         this.serialNumberPrompt = new SerialNumberPrompt(viewModel.getUnitManager());
         this.serialNumberPrompt.setUnitSortOrder(viewModel.getUnitSortOrder());
     }

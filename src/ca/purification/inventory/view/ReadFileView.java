@@ -33,7 +33,7 @@ public class ReadFileView extends View {
     private final ReadFileViewModel viewModel;
     private final LazyDependency<MenuView> mainMenu;
 
-    private final TextElementPresenter elementPresenter = new TextElementPresenter();
+    private final TextElementPresenter elementPresenter;
 
     private final String filePromptText = """
             Enter the path to the input JSON file; blank to cancel.
@@ -42,9 +42,12 @@ public class ReadFileView extends View {
     private final PromptElement<Optional<File>> filePrompt =
             new PromptElement<>(filePromptText, this::getEnteredFile);
 
-    public ReadFileView(ReadFileViewModel viewModel, LazyDependency<MenuView> menuView) {
+    public ReadFileView(ReadFileViewModel viewModel, 
+                        TextElementPresenter presenter,
+                        LazyDependency<MenuView> menuView) {
         super(viewModel);
         this.viewModel = viewModel;
+        this.elementPresenter = presenter;
         this.mainMenu = menuView;
     }
 
