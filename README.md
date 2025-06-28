@@ -16,12 +16,5 @@ This was made for one of my courses, and I would say it was good MVVM practice i
 - Console-based user interface (though technically GUI is applicable)
 
 ## Getting Started
-
-### Compile
-Either run in IntelliJ or compile it manually:
-
-```bash
-javac WaterInventoryManager/src/ca/purification/inventory/main/*.java
-java WaterInventoryManager/src/ca/purification/inventory/main/Main
-```
+The project can be compiled and run with IntelliJ.
 
